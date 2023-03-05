@@ -12,9 +12,9 @@ class Company {
   }
 
   public function displayCompany() {
-      echo $this->company_name."\n";
-      echo $this->address."\n";
-      echo $this->phone_number."\n";
+      echo "会社名：".$this->company_name."\n";
+      echo "住所：".$this->address."\n";
+      echo "電話番号：".$this->phone_number."\n";
   }
 }
 
@@ -28,8 +28,8 @@ class Department extends Company {
   }
 
   public function displayDepartment() {
-      echo $this->department_name."\n";
-      echo $this->manager."\n";
+      echo "部署名：". $this->department_name."\n";
+      echo "部長：".$this->manager."\n";
   }
 }
 
