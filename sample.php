@@ -1,53 +1,55 @@
 <?php
 
 class Company {
-  protected $name;
+  protected $company_name;
   protected $address;
-  protected $phone;
-  
-  
+  protected $phone_number;
+
+  public function __construct($company_name, $address, $phone_number) {
+      $this->company_name = $company_name;
+      $this->address = $address;
+      $this->phone_number = $phone_number;
+  }
+
   public function displayCompany() {
-    echo "会社名：" . $this->name . "<br>";
-    echo "住所：" . $this->address . "<br>";
-    echo "電話番号：" . $this->phone . "<br>";
+      echo $this->company_name."\n";
+      echo $this->address."\n";
+      echo $this->phone_number."\n";
   }
 }
 
 class Department extends Company {
-  private $departmentName;
-  private $departmentHead;
-  
+  private $department_name;
+  private $manager;
+
+  public function __construct($department_name, $manager) {
+      $this->department_name = $department_name;
+      $this->manager = $manager;
+  }
+
   public function displayDepartment() {
-    echo "部署名：" . $this->departmentName . "<br>";
-    echo "部長：" . $this->departmentHead . "<br>";
+      echo $this->department_name."\n";
+      echo $this->manager."\n";
   }
 }
 
-$company1 = new Company();
-$company1->$name = "サンプルA";
-$company1->$address = "市ヶ谷";
-$company1->$phone = "080-XXXX-XXXX";
+$company1 = new Company('サンプルA', '市ヶ谷', '080-XXXX-XXXX');
+$company2 = new Company('サンプルB', '池袋', '090-XXXX-XXXX');
+$company3 = new Company('サンプルC', '新宿', '080-XXXX-XXXX');
 
-$department1 = new Department();
-$department1->$departmentName = "人事";
-$department1->$departmentHead = "高田";
+$department1 = new Department( '人事', '高田');
+$department2 = new Department('総務', '田中');
+$department3 = new Department('営業', '高橋');
 
-$company2 = new Company();
-$company2->$name = "サンプルB";
-$company2->$address = "池袋";
-$company2->$phone = "090-XXXX-XXXX";
+$companies = array($company1, $company2, $company3);
+$departments = array($department1, $department2, $department3);
 
-$department2 = new Department();
-$department2->$departmentName = "総務";
-$department2->$departmentHead = "田中";
+foreach ($companies as $company) {
+  $company->displayCompany()."\n";
+}
 
-$company3 = new Company();
-$company3->$name = "サンプルC";
-$company3->$address = "新宿";
-$company3->$phone = "070-XXXX-XXXXX";
-
-$department3 = new Department();
-$department3->$departmentName = "営業";
-$department3->$departmentHead = "高橋";
+foreach ($departments as $department) {
+  $department->displayDepartment()."\n";
+}
 
 ?>
