@@ -1,55 +1,47 @@
 <?php
-
 class Company {
-  protected $company_name;
+  protected $name;
   protected $address;
-  protected $phone_number;
+  protected $telephone;
 
-  public function __construct($company_name, $address, $phone_number) {
-      $this->company_name = $company_name;
-      $this->address = $address;
-      $this->phone_number = $phone_number;
+  function __construct($name, $address, $telephone) {
+    $this->name = $name;
+    $this->address = $address;
+    $this->telephone = $telephone;
   }
 
-  public function displayCompany() {
-      echo "会社名：".$this->company_name."\n";
-      echo "住所：".$this->address."\n";
-      echo "電話番号：".$this->phone_number."\n";
+  function displayCompany() {
+    echo "会社名: " . $this->name ."\n";
+    echo "住所: " . $this->address . "\n";
+    echo "電話番号: " . $this->telephone . "\n";
   }
 }
 
 class Department extends Company {
   private $department_name;
-  private $manager;
+  private $department_head;
 
-  public function __construct($department_name, $manager) {
-      $this->department_name = $department_name;
-      $this->manager = $manager;
+  function __construct($name, $address, $telephone, $department_name, $department_head) {
+    parent::__construct($name, $address, $telephone);
+    $this->department_name = $department_name;
+    $this->department_head = $department_head;
   }
 
-  public function displayDepartment() {
-      echo "部署名：". $this->department_name."\n";
-      echo "部長：".$this->manager."\n";
+  function displayDepartment() {
+    echo "部署名: " . $this->department_name . "\n";
+    echo "部長: " . $this->department_head . "\n";
   }
 }
 
-$company1 = new Company('サンプルA', '市ヶ谷', '080-XXXX-XXXX');
-$company2 = new Company('サンプルB', '池袋', '090-XXXX-XXXX');
-$company3 = new Company('サンプルC', '新宿', '080-XXXX-XXXX');
+$department1 = new Department("サンプルA", "市ヶ谷", "080-XXXX-XXXX", "人事", "高田");
+$department2 = new Department("サンプルB", "池袋", "090-xxxx-xxxx", "総務", "田中");
+$department3 = new Department("サンプルC", "新宿", "070-xxxx-xxxx", "営業", "高橋");
 
-$department1 = new Department( '人事', '高田');
-$department2 = new Department('総務', '田中');
-$department3 = new Department('営業', '高橋');
-
-$companies = array($company1, $company2, $company3);
-$departments = array($department1, $department2, $department3);
-
-foreach ($companies as $company) {
-  $company->displayCompany()."\n";
-}
+$departments = array($department1, $department2,$department3);
 
 foreach ($departments as $department) {
-  $department->displayDepartment()."\n";
+  $department->displayCompany();
+  $department->displayDepartment();
+  echo "\n";
 }
-
 ?>
